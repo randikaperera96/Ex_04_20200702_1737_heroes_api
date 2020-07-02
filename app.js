@@ -1,19 +1,15 @@
 const express = require('express');
 const { json } = require('express');
+const authenticator = require('./middleware/authenticator');
+const mailer = require('./middleware/emailjob');
+
 const app = express();// top level function of express [ similar to "costructor" in OOP ]
 const PORT = 5000;
 
 app.use(express.json()); //to read POST or PUT request body as JSON
 
-app.use((req, res, next)=>{
-    console.log('1st middleware');
-    next();
-});
-
-app.use((req, res, next)=>{
-    console.log('2nd middleware');
-    next();
-});
+app.use(authenticator);
+app.use(mailer);
 
 let heroArrray = [
     {
