@@ -115,7 +115,7 @@ app.put('/api/heroes/:heroId', (req, res) => {
     res.send(hero);
 });
 
-// // my attempt
+// my attempt
 app.delete('/api/heroes', (req, res) => {
     let heroId = parseInt(req.body.heroId);
     let heroObjPos = heroArrray.findIndex(hObj => hObj.id === heroId);
@@ -134,23 +134,7 @@ app.delete('/api/heroes', (req, res) => {
     res.send(removedHero);
 });
 
-app.delete('/api/heroes:heroId', (req, res) => {
-    let heroId = parseInt(req.body.heroId);
-    let heroObjPos = heroArrray.findIndex(hObj => hObj.id === heroId);
-
-    if (heroObjPos == -1) {
-        return res.status(404).send("Hero not found for the given ID");
-    }
-
-    console.log(heroArrray);
-    let removedHero = heroArrray[heroObjPos];
-
-    heroArrray.splice(heroObjPos, 1);
-    console.log(heroArrray);
-
-    // res.send("Removed hero : " + JSON.stringify(removedHero)); //din't send raw text
-    res.send(removedHero);
-});
+// lecturere's code get from 20200702 lec
 
 app.get("/*", (req, res) => {
     res.status(404).send("404 PFF.. Do you even API bro XD");
